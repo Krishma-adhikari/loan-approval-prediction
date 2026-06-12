@@ -52,8 +52,11 @@ if st.button("Predict Loan Status"):
 
     st.write("Raw prediction:", prediction)
 
-    if prediction in [1, "Approved"]:
-        st.success("✅ Loan Approved")
+# normalize prediction
+    if isinstance(prediction, str):
+     prediction = prediction.strip().lower()
+
+    if prediction in [1, "approved", "yes", "true", "1"]:
+     st.success("Loan Approved")
     else:
-        st.error("❌ Loan Rejected")
-   
+     st.error("Loan Rejected")
